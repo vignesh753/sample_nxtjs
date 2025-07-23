@@ -1,0 +1,28 @@
+name: 🔨 Next.js Build Test
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  test-build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: ⏬ Checkout Code
+      uses: actions/checkout@v4
+
+    - name: 🟢 Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+
+    - name: 📦 Install Dependencies
+      run: npm install
+
+    - name: 🏗️ Build the App
+      run: npm run build
+
+    - name: 📂 List .next directory
+      run: ls -la .next
